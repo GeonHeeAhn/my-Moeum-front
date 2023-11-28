@@ -1,0 +1,123 @@
+{
+  "userList": [
+    {
+      "id": 1,
+      "username": "건희",
+      "email": "sleep@test.com",
+      "friendsList": [
+        { "id": 1, "name": "윤선", "faceImg": "/faceImg/3.JPG" },
+        { "id": 2, "name": "영우", "faceImg": "/faceImg/4.JPG" },
+        { "id": 3, "name": "유진", "faceImg": "/faceImg/5.PNG" },
+        { "id": 4, "name": "진영", "faceImg": "/faceImg/2.jpg" },
+        { "id": 5, "name": "건희", "faceImg": "/faceImg/1.JPG" },
+        { "id": 6, "name": "혜준", "faceImg": "/faceImg/6.jpg" }
+      ],
+      "postList": [
+        {
+          "id": 1,
+          "date": "2023-11-16",
+          "location": "이화여자대학교",
+          "latitude": 126.94330347722,
+          "longitude": 37.5630049094868,
+          "original": "/original/demo.png",
+          "friendId": [1, 3, 6],
+          "content": "재밌었다!!",
+          "commentList": []
+        },
+        {
+          "id": 2,
+          "date": "2023-04-21",
+          "location": "커피빈 연대동문회관점",
+          "latitude": 126.94765009467245,
+          "longitude": 37.562544705628845,
+          "original": "/original/1.PNG",
+          "friendId": [1, 2, 3, 4],
+          "content": "어쩌구저쩌구 즐거운 하루였당~!!!",
+          "commentList": [
+            { "id": 1, "name": [6], "content": "귀엽넹ㅋ" },
+            { "id": 2, "name": [14], "content": "왜 나 빼고 놈?" }
+          ]
+        },
+        {
+          "id": 3,
+          "date": "2023-10-08",
+          "location": "신촌 유플렉스",
+          "latitude": 126.93661730245256,
+          "longitude": 37.55673777941326,
+          "original": "/original/2.PNG",
+          "friendId": [1, 4],
+          "content": "와 시험공부 진짜 하기시름",
+          "commentList": [
+            {
+              "id": 1,
+              "name": "놀고있는 거북이",
+              "content": "헐 짱이쁘게 나왔다"
+            },
+            { "id": 2, "name": [18], "content": "ㄱㅇㅇ" },
+            {
+              "id": 3,
+              "name": "코딩하는 강아지",
+              "content": "옷 예뿌다 ㅈㅂㅈㅇ"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "date": "2023-08-10",
+          "location": "이대역",
+          "latitude": 126.94642954546576,
+          "longitude": 37.556814718869,
+          "original": "/original/3.PNG",
+          "friendId": [1, 2],
+          "content": "어쩌구저쩌구 즐거운 하루였당~!!!",
+          "commentList": [
+            { "id": 1, "name": [3], "content": "나도 껴줘" },
+            { "id": 2, "name": [13], "content": "나두~~오늘 넘 재밌었어" }
+          ]
+        },
+        {
+          "id": 5,
+          "date": "2023-06-05",
+          "location": "커피빈 연대동문회관점",
+          "latitude": 126.94330347722,
+          "longitude": 37.5630049094868,
+          "original": "/original/4.PNG",
+          "friendId": [1, 4],
+          "content": "하..빨리 종강했으면",
+          "commentList": [
+            { "id": 1, "name": [22], "content": "ㅇㅈ합니다" },
+            { "id": 2, "name": [2], "content": "그래두 곧 기말고사 잖아><" }
+          ]
+        },
+        {
+          "id": 6,
+          "date": "2022-03-12",
+          "location": "커피빈 연대동문회관점",
+          "latitude": 126.94330347722,
+          "longitude": 37.5630049094868,
+          "original": "/original/5.PNG",
+          "friendId": [1, 2],
+          "content": "어쩌구저쩌구 즐거운 하루였당~!!!",
+          "commentList": [
+            { "id": 1, "name": [22], "content": "오~~~" },
+            { "id": 2, "name": [2], "content": "왜 나 빼고 놈?" }
+          ]
+        },
+        {
+          "id": 7,
+          "date": "2022-07-30",
+          "location": "커피빈 연대동문회관점",
+          "latitude": 126.94330347722,
+          "longitude": 37.5630049094868,
+          "original": "/original/6.PNG",
+          "friendId": [1, 3, 4],
+          "content": "어쩌구저쩌구 즐거운 하루였당~!!!",
+          "commentList": [
+            { "id": 1, "name": [22], "content": "귀엽넹ㅋ" },
+            { "id": 2, "name": [2], "content": "왜 나 빼고 놈?" }
+          ]
+        }
+      ]
+    }
+  ]
+}
