@@ -39,7 +39,7 @@ const HomeScreen = () => {
       // Send API request
       const response = await axios({
         method: 'GET',
-        url: `/posts?userId=${1}`,
+        url: `/posts`,
         withCredentials: true,
       });
       setPostlist(response.data.posts);
