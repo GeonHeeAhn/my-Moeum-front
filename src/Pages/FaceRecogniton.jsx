@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import * as faceapi from '../../face-api'
 import styled from 'styled-components';
 
 import BackgroundContainer from '../Components/BackgroundContainer';
