@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as faceapi from '../../face-api';
+import * as faceapi from 'https://raw.githubusercontent.com/GeonHeeAhn/my-Moeum-front/blob/main/face-api.jsx';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
