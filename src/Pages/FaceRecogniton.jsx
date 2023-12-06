@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 import * as faceapi from '../../face-api';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import BackgroundContainer from '../Components/BackgroundContainer';
@@ -31,6 +31,7 @@ const FaceRecogniton = () => {
   const faceIndex = [];
 
   const navigate = useNavigate();
+  console.log('faceapi : '+ faceapi);
 
   let canvasDataURL;
 
