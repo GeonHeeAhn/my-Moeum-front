@@ -126,9 +126,9 @@ const FaceRecogniton = () => {
   useEffect(() => {
     async function loadModels() {
       await Promise.all([
-        faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-        faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
-        faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+        faceapi.nets.faceRecognitionNet.loadFromUri('https://raw.githubusercontent.com/GeonHeeAhn/my-Moeum-front/main/public/models'),
+        faceapi.nets.ssdMobilenetv1.loadFromUri('https://raw.githubusercontent.com/GeonHeeAhn/my-Moeum-front/main/public/models'),
+        faceapi.nets.faceLandmark68Net.loadFromUri('https://raw.githubusercontent.com/GeonHeeAhn/my-Moeum-front/main/public/models'),
       ]);
     }
 

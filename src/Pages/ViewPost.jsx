@@ -119,7 +119,7 @@ export const ViewPost = () => {
       // Send API request
       const response = await axios({
         method: 'GET',
-        url: `/post/${postId}?userId=${1}`,
+        url: `/post/${postId}`,
         withCredentials: true,
       });
       postRef.current = response.data.post;
