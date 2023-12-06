@@ -1,4 +1,4 @@
-import * as faceapi from '../../face-api.jsx';
+import * as faceapi from 'face-api.js';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
@@ -127,9 +127,15 @@ const FaceRecogniton = () => {
   useEffect(() => {
     async function loadModels() {
       await Promise.all([
-        faceapi.nets.faceRecognitionNet.loadFromUri('https://raw.githubusercontent.com/GeonHeeAhn/my-Moeum-front/main/public/models'),
-        faceapi.nets.ssdMobilenetv1.loadFromUri('https://raw.githubusercontent.com/GeonHeeAhn/my-Moeum-front/main/public/models'),
-        faceapi.nets.faceLandmark68Net.loadFromUri('https://raw.githubusercontent.com/GeonHeeAhn/my-Moeum-front/main/public/models'),
+        faceapi.nets.faceRecognitionNet.loadFromUri(
+          'https://raw.githubusercontent.com/GeonHeeAhn/my-Moeum-front/main/public/models',
+        ),
+        faceapi.nets.ssdMobilenetv1.loadFromUri(
+          'https://raw.githubusercontent.com/GeonHeeAhn/my-Moeum-front/main/public/models',
+        ),
+        faceapi.nets.faceLandmark68Net.loadFromUri(
+          'https://raw.githubusercontent.com/GeonHeeAhn/my-Moeum-front/main/public/models',
+        ),
       ]);
     }
 
