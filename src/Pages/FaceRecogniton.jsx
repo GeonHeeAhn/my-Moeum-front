@@ -146,7 +146,6 @@ const FaceRecogniton = () => {
     }
 
     async function loadModelsAndStart() {
-      console.log('faceapi : '+ faceapi);
       await loadModels(); // 모델 로딩
       await start(); // 모델 로딩 후 실행
 
