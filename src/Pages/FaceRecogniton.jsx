@@ -1,4 +1,4 @@
-import * as faceapi from '../../face-api';
+import * as faceapi from '../../face-api.jsx';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
