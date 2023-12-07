@@ -424,7 +424,7 @@ const FaceRecogniton = () => {
         return Promise.all(
           labels.map(async (label) => {
             const description = [];
-            const img = await faceapi.fetchImage(`${process.env.PUBLIC_URL}/known/${label}.jpg`);
+            const img = await faceapi.fetchImage(`/known/${label}.jpg`);
             const detections = await faceapi
               .detectSingleFace(img)
               .withFaceLandmarks()
