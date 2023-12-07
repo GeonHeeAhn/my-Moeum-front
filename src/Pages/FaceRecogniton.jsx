@@ -1,6 +1,7 @@
 import * as faceapi from 'face-api.js';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import axios, { AxiosError } from 'axios';
 import styled from 'styled-components';
 
 import BackgroundContainer from '../Components/BackgroundContainer';
@@ -29,8 +30,82 @@ const FaceRecogniton = () => {
   const [faceMatcher, setFaceMatcher] = useState(null);
   const [selectedFace, setSelectedFace] = useState(null);
   const faceIndex = [];
+  const [friendlist, setFriendlist] = useState();
+  const [fd, setfd] = useState([]);
 
   const navigate = useNavigate();
+
+  const sendApi = async () => {
+    // Send 버튼 더블클릭 방지
+    if (loading) return;
+
+    setLoading(true);
+
+    try {
+      // Send API request
+      const response = await axios({
+        method: 'GET',
+        url: `/friends`,
+        withCredentials: true,
+      });
+
+      setFriendlist(response.data.friends);
+
+      // 2XX status code
+      console.log(response.status);
+      console.log(response.data);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        if (error.response) {
+          // Non-2XX status code
+          console.error(error.response.status);
+          console.error(error.response.data);
+        } else if (error.request) {
+          // Request made, no response
+          console.error(error.request);
+        }
+      } else {
+        // Other unexpected error
+        console.error(error);
+      }
+    } finally {
+    }
+  };
+
+  const imgApi = async () => {
+    console.log('api 들어옴');
+    try {
+      // Assuming postlist is an array
+      console.log('try문 들어옴');
+      const newFriendlist = await Promise.all(
+        friendlist.map(async (friend) => {
+          const response = await axios({
+            method: 'GET',
+            url: `/images/${friend.imgPath}`,
+            withCredentials: true,
+            responseType: 'blob',
+          });
+
+          // 2XX status code
+          console.log(response.status);
+
+          // 이미지를 Blob에서 URL로 변환
+          const blobUrl = URL.createObjectURL(new Blob([response.data]));
+
+          // 새로운 객체를 생성하여 기존 post의 정보를 복사하고 imgPath를 업데이트
+          return { ...friend, imgPath: blobUrl };
+        }),
+      );
+
+      setfd(newFriendlist);
+      console.log('일단 map은 끝남');
+    } catch (error) {
+      // 오류 처리
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   let canvasDataURL;
 
@@ -157,9 +232,18 @@ const FaceRecogniton = () => {
 
       setLoaded(true);
     }
+    const fetchFriend = async () => {
+      await sendApi();
+      await imgApi();
+    };
+    fetchFriend();
 
     loadModelsAndStart();
   }, []);
+
+  useEffect(() => {
+    imgApi();
+  }, [friendlist]);
 
   useEffect(() => {
     if (loaded) {
@@ -272,17 +356,19 @@ const FaceRecogniton = () => {
     //get api해서 친구 목록 받아오고
     //이름만 추출해서 라벨 설정
     //fetchImage할 때 친구목록[친구목록.indexOf(${label})].faceImg 해서 사용
-    const labels = ['거니거니', '빵후니', '오쨩', '윤선', '혜준'];
+
+    //const labels = fd.filter(item => item.friendName === targetFriendName);
     return Promise.all(
-      labels.map(async (label) => {
+      fd.map(async (friend) => {
         const description = [];
-        const img = await faceapi.fetchImage(`https://github.com/GeonHeeAhn/my-Moeum-front/blob/main/src/known/${label}.jpg?raw=true`);
+        //const img = await faceapi.fetchImage(`https://github.com/GeonHeeAhn/my-Moeum-front/blob/main/src/known/${label}.jpg?raw=true`);
+        const img = friend.imgPath;
         const detections = await faceapi
           .detectSingleFace(img)
           .withFaceLandmarks()
           .withFaceDescriptor();
         description.push(detections.descriptor);
-        return new faceapi.LabeledFaceDescriptors(label, description);
+        return new faceapi.LabeledFaceDescriptors(friend.friendName, description);
       }),
     );
   }

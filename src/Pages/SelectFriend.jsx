@@ -25,8 +25,6 @@ const SelectFriend = () => {
   const [friendlist, setFriendlist] = useState();
   const [fd, setfd] = useState([]);
 
-  const friendsList = demo.userList.map((user) => user.friendsList).flat();
-
   function dataURItoBlob(dataURI) {
     // convert base64/URLEncoded data component to raw binary data held in a string
     let byteString;
@@ -51,11 +49,7 @@ const SelectFriend = () => {
   const imgURL = location.state.wholeImg;
   const orginalImgBlob = dataURItoBlob(imgURL);
 
-  /*savedFriendData.forEach((friend, index) => {
-    formData.append(`savedFriend_${index + 1}_name`, friend.name);
-  });*/
 
-  //임시로 넣어둔 데이터 - 이후 선택된 인물의 값을 적용할 수 있도록 코드 변경해두어야함
   const moveFunc = (friendName) => {
     navigate('/isanyonemore', {
       state: {
@@ -67,7 +61,6 @@ const SelectFriend = () => {
           ...location.state.savedFriendData,
           {
             name: friendName,
-            //친구목록 파일의 사진으로 추후 수정
             faceImg: croppedFaceDataURL,
           },
         ],
@@ -86,7 +79,7 @@ const SelectFriend = () => {
       // Send API request
       const response = await axios({
         method: 'GET',
-        url: `/friends?userId=1`,
+        url: `/friends`,
         withCredentials: true,
       });
 
