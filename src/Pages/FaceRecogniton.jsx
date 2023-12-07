@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
 import styled from 'styled-components';
+import faceImage from '../known/혜준.jpg';
 
 import BackgroundContainer from '../Components/BackgroundContainer';
 import {
@@ -30,8 +31,8 @@ const FaceRecogniton = () => {
   const [faceMatcher, setFaceMatcher] = useState(null);
   const [selectedFace, setSelectedFace] = useState(null);
   const faceIndex = [];
-  const [friendlist, setFriendlist] = useState();
-  const [fd, setfd] = useState([]);
+  const friendlist = useRef([]);
+  const fd = useRef([]);
 
   const navigate = useNavigate();
 
@@ -49,7 +50,7 @@ const FaceRecogniton = () => {
         withCredentials: true,
       });
 
-      setFriendlist(response.data.friends);
+      friendlist.current = response.data.friends;
 
       // 2XX status code
       console.log(response.status);
@@ -75,7 +76,7 @@ const FaceRecogniton = () => {
   const imgApi = async () => {
     try {
       const newFriendlist = await Promise.all(
-        friendlist.map(async (friend) => {
+        friendlist.current.map(async (friend) => {
           const response = await axios({
             method: 'GET',
             url: `/images/${friend.imgPath}`,
@@ -94,7 +95,7 @@ const FaceRecogniton = () => {
         }),
       );
 
-      setfd(newFriendlist);
+      fd.current = newFriendlist;
       console.log('imgapi 끝남');
     } catch (error) {
       // 오류 처리
@@ -350,8 +351,9 @@ const FaceRecogniton = () => {
   async function loadLabeledImage() {
     console.log("label load 시작");
     //const labels = fd.filter(item => item.friendName === targetFriendName);
-    return Promise.all(
-      fd.map(async (friend) => {
+    //가장 앞에 unknown 값 추가해주기
+    return (fd == []? Promise.all(
+      fd.current.map(async (friend) => {
         const description = [];
         //const img = await faceapi.fetchImage(`https://github.com/GeonHeeAhn/my-Moeum-front/blob/main/src/known/${label}.jpg?raw=true`);
         const img = friend.imgPath;
@@ -362,8 +364,18 @@ const FaceRecogniton = () => {
           .withFaceDescriptor();
         description.push(detections.descriptor);
         return new faceapi.LabeledFaceDescriptors(friend.friendName, description);
-      }),
-    );
+      })) : Promise.all(
+        async () => {
+          const description = [];
+          //const img = await faceapi.fetchImage(`https://github.com/GeonHeeAhn/my-Moeum-front/blob/main/src/known/${label}.jpg?raw=true`);
+          const img = faceImage;
+          console.log(img);
+          const detections = await faceapi
+            .detectSingleFace(img)
+            .withFaceLandmarks()
+            .withFaceDescriptor();
+          description.push(detections.descriptor);
+          return new faceapi.LabeledFaceDescriptors('unknown', description);}));
   }
 
   return (
