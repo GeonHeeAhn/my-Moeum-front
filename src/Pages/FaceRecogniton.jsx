@@ -353,32 +353,33 @@ const FaceRecogniton = () => {
     console.log(fd.current);
     //const labels = fd.filter(item => item.friendName === targetFriendName);
     //가장 앞에 unknown 값 추가해주기
-    return (fd == []? Promise.all(
-      fd.current.map(async (friend) => {
+    return (fd == []? Promise.all([
+      async () => {
+        console.log("친구 없음");
         const description = [];
-        //const img = await faceapi.fetchImage(`https://github.com/GeonHeeAhn/my-Moeum-front/blob/main/src/known/${label}.jpg?raw=true`);
-        const img = friend.imgPath;
+        const img = "https://github.com/Moeum-ewha/Moeum-frontend/blob/main/public/known/거니거니.jpg?raw=true";
         console.log(img);
         const detections = await faceapi
           .detectSingleFace(img)
           .withFaceLandmarks()
           .withFaceDescriptor();
         description.push(detections.descriptor);
-        return new faceapi.LabeledFaceDescriptors(friend.friendName, description);
-      })) : Promise.all([
-        async () => {
-          console.log("친구 없음");
+        return new faceapi.LabeledFaceDescriptors('unknown', description);
+      },
+    ]): Promise.all(
+        fd.current.map(async (friend) => {
           const description = [];
-          const img = "https://github.com/Moeum-ewha/Moeum-frontend/blob/main/public/known/거니거니.jpg?raw=true";
+          //const img = await faceapi.fetchImage(`https://github.com/GeonHeeAhn/my-Moeum-front/blob/main/src/known/${label}.jpg?raw=true`);
+          const img = friend.imgPath;
           console.log(img);
           const detections = await faceapi
             .detectSingleFace(img)
             .withFaceLandmarks()
             .withFaceDescriptor();
           description.push(detections.descriptor);
-          return new faceapi.LabeledFaceDescriptors('unknown', description);
-        },
-      ]));
+          return new faceapi.LabeledFaceDescriptors(friend.friendName, description);
+        }))
+      );
   }
 
   return (
