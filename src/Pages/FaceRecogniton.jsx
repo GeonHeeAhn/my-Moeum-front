@@ -193,6 +193,37 @@ const FaceRecogniton = () => {
     }
   };
 
+  async function loadImageAndDetect(imgPath) {
+    console.log(imgPath);
+
+    // 이미지를 가져오기
+    const response = await fetch(imgPath);
+    const blob = await response.blob();
+
+    // Image 객체 생성
+    const img = new Image();
+    img.src = URL.createObjectURL(blob);
+
+    // Image가 로드될 때까지 대기
+    await new Promise((resolve) => {
+        img.onload = resolve;
+    });
+
+    // Image를 Canvas에 그림
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, img.width, img.height);
+
+    // detectSingleFace에 전달할 수 있는 형태로 변환
+    const input = faceapi.tf.tensor(img);
+    const detections = await faceapi.detectSingleFace(input).withFaceLandmarks().withFaceDescriptor();
+
+    // 다시 Promise 형태로 반환
+    return new faceapi.LabeledFaceDescriptors('unknown', [detections.descriptor]);
+}
+
   const handleImageSelect = (image) => {
     setSelectedImage(image);
   };
@@ -383,8 +414,9 @@ const FaceRecogniton = () => {
         console.log("친구없음");
         
         const description = [];
-        const img = "https://github.com/Moeum-ewha/Moeum-frontend/blob/main/public/known/거니거니.jpg?raw=true";
-        console.log(img);
+        const imgPath = "https://github.com/Moeum-ewha/Moeum-frontend/blob/main/public/known/거니거니.jpg?raw=true";
+        const labeledDescriptors = await loadImageAndDetect(imgPath);
+
         
         const detections = await faceapi
             .detectSingleFace(img)
@@ -392,7 +424,7 @@ const FaceRecogniton = () => {
             .withFaceDescriptor();
 
         description.push(detections.descriptor);
-        return [new faceapi.LabeledFaceDescriptors('unknown', description)];
+        return [labeledDescriptors];
     } else {
         const promises = fd.current.map(async (friend) => {
             const description = [];
