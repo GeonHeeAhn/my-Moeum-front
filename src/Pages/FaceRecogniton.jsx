@@ -436,10 +436,9 @@ const FaceRecogniton = () => {
     } else {
         const promises = fd.current.map(async (friend) => {
             const description = [];
-            const img = friend.imgPath;
-            const imageUrl = 'blob:https://www.moeum.site/924f0b67-86fc-4c78-aec6-899a9351a7a5';
+            //const img = friend.imgPath;
             const imgElement = document.createElement('img');
-            imgElement.src = imageUrl;
+            imgElement.src = friend.imgPath;
             console.log(imgElement);
 
             const detections = await faceapi
