@@ -353,7 +353,7 @@ const FaceRecogniton = () => {
     console.log(fd.current);
     //const labels = fd.filter(item => item.friendName === targetFriendName);
     //가장 앞에 unknown 값 추가해주기
-    return (fd == []? Promise.all([
+    return (fd.current == []? Promise.all([
       async () => {
         console.log("친구 없음");
         const description = [];
