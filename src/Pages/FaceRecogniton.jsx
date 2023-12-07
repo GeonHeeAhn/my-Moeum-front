@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
 import styled from 'styled-components';
-import faceImage from 'https://github.com/GeonHeeAhn/my-Moeum-front/tree/main/src/known/거니거니.jpg?raw=true';
+import faceImage from 'https://github.com/Moeum-ewha/Moeum-frontend/blob/main/src/known/거니거니.jpg?raw=true';
 
 import BackgroundContainer from '../Components/BackgroundContainer';
 import {
