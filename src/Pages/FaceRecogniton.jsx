@@ -34,7 +34,7 @@ const FaceRecogniton = () => {
   const fd = useRef([]);
 
   const navigate = useNavigate();
-  console.log(faceImage);
+
 
   const sendApi = async () => {
     // Send 버튼 더블클릭 방지
