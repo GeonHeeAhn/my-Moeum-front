@@ -350,13 +350,12 @@ const FaceRecogniton = () => {
 
   async function loadLabeledImage() {
     console.log("label load 시작");
-    console.log(fd.current);
     //const labels = fd.filter(item => item.friendName === targetFriendName);
     //가장 앞에 unknown 값 추가해주기
-    return (fd.current == []? Promise.all([
+    return (fd.current.length === 0 ? Promise.all([
       async () => {
-        console.log("친구 없음");
         const description = [];
+        console.log("친구없음");
         const img = "https://github.com/Moeum-ewha/Moeum-frontend/blob/main/public/known/거니거니.jpg?raw=true";
         console.log(img);
         const detections = await faceapi
