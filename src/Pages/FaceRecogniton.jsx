@@ -2,6 +2,7 @@ import * as faceapi from 'face-api.js';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
+import faceImg from '../../public/known/거니거니.jpg';
 import styled from 'styled-components';
 
 import BackgroundContainer from '../Components/BackgroundContainer';
@@ -414,8 +415,8 @@ const FaceRecogniton = () => {
         console.log("친구없음");
         
         const description = [];
-        const imgPath = "https://github.com/Moeum-ewha/Moeum-frontend/blob/main/public/known/거니거니.jpg?raw=true";
-        const labeledDescriptors = await loadImageAndDetect(imgPath);
+        //const imgPath = "https://github.com/Moeum-ewha/Moeum-frontend/blob/main/public/known/거니거니.jpg?raw=true";
+        const labeledDescriptors = await loadImageAndDetect(faceImg);
 
         
         const detections = await faceapi
