@@ -389,7 +389,6 @@ const FaceRecogniton = () => {
         const description = [];
         console.log("친구없음");
         const img = "https://github.com/Moeum-ewha/Moeum-frontend/blob/main/public/known/거니거니.jpg?raw=true";
-        console.log(img);
         const detections = await faceapi
           .detectSingleFace(img)
           .withFaceLandmarks()
@@ -400,9 +399,7 @@ const FaceRecogniton = () => {
     ]): Promise.all(
         fd.current.map(async (friend) => {
           const description = [];
-          //const img = await faceapi.fetchImage(`https://github.com/GeonHeeAhn/my-Moeum-front/blob/main/src/known/${label}.jpg?raw=true`);
           const img = friend.imgPath;
-          console.log(img);
           const detections = await faceapi
             .detectSingleFace(img)
             .withFaceLandmarks()
@@ -414,18 +411,29 @@ const FaceRecogniton = () => {
       if (fd.current.length === 0) {
         console.log("친구없음");
         
-        const description = [];
-        //const imgPath = "https://github.com/Moeum-ewha/Moeum-frontend/blob/main/public/known/거니거니.jpg?raw=true";
+        /*const description = [];
         const labeledDescriptors = await loadImageAndDetect(faceImg);
 
-        
         const detections = await faceapi
             .detectSingleFace(img)
             .withFaceLandmarks()
             .withFaceDescriptor();
 
         description.push(detections.descriptor);
-        return [labeledDescriptors];
+        return [labeledDescriptors];*/
+        const labels = ['gh', 'jy', 'yh'];
+        return Promise.all(
+          labels.map(async (label) => {
+            const description = [];
+            const img = await faceapi.fetchImage(`${process.env.PUBLIC_URL}/known/${label}.jpg`);
+            const detections = await faceapi
+              .detectSingleFace(img)
+              .withFaceLandmarks()
+              .withFaceDescriptor();
+            description.push(detections.descriptor);
+            return new faceapi.LabeledFaceDescriptors(label, description);
+          }),
+        );
     } else {
         const promises = fd.current.map(async (friend) => {
             const description = [];
