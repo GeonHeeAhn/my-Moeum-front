@@ -77,6 +77,7 @@ export const NavBar = (props) => {
         method: 'post',
         url: `/posts`,
         data: formData,
+        withCredentials: true,
 
         headers: {
           'Content-Type': 'multipart/form-data',
