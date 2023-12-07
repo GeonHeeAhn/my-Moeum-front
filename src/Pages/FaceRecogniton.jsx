@@ -366,6 +366,7 @@ const FaceRecogniton = () => {
         return new faceapi.LabeledFaceDescriptors(friend.friendName, description);
       })) : Promise.all([
         async () => {
+          console.log("친구 없음");
           const description = [];
           const img = "https://github.com/Moeum-ewha/Moeum-frontend/blob/main/public/known/거니거니.jpg?raw=true";
           console.log(img);
