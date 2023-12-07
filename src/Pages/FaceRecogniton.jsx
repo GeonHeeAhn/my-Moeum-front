@@ -350,6 +350,7 @@ const FaceRecogniton = () => {
 
   async function loadLabeledImage() {
     console.log("label load 시작");
+    console.log(fd.current);
     //const labels = fd.filter(item => item.friendName === targetFriendName);
     //가장 앞에 unknown 값 추가해주기
     return (fd == []? Promise.all(
