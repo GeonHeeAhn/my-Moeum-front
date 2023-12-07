@@ -363,6 +363,7 @@ const FaceRecogniton = () => {
         const description = [];
         //const img = await faceapi.fetchImage(`https://github.com/GeonHeeAhn/my-Moeum-front/blob/main/src/known/${label}.jpg?raw=true`);
         const img = friend.imgPath;
+        console.log(img);
         const detections = await faceapi
           .detectSingleFace(img)
           .withFaceLandmarks()
