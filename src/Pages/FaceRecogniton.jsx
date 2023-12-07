@@ -364,10 +364,9 @@ const FaceRecogniton = () => {
           .withFaceDescriptor();
         description.push(detections.descriptor);
         return new faceapi.LabeledFaceDescriptors(friend.friendName, description);
-      })) : Promise.all(
+      })) : Promise.all([
         async () => {
           const description = [];
-          //const img = await faceapi.fetchImage(`https://github.com/GeonHeeAhn/my-Moeum-front/blob/main/src/known/${label}.jpg?raw=true`);
           const img = faceImage;
           console.log(img);
           const detections = await faceapi
@@ -375,7 +374,9 @@ const FaceRecogniton = () => {
             .withFaceLandmarks()
             .withFaceDescriptor();
           description.push(detections.descriptor);
-          return new faceapi.LabeledFaceDescriptors('unknown', description);}));
+          return new faceapi.LabeledFaceDescriptors('unknown', description);
+        },
+      ]));
   }
 
   return (
