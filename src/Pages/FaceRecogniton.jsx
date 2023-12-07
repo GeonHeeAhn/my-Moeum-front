@@ -2,7 +2,7 @@ import * as faceapi from 'face-api.js';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
-import faceImg from './Assets/거니거니.jpg';
+import faceImg from './gh.jpg';
 import styled from 'styled-components';
 
 import BackgroundContainer from '../Components/BackgroundContainer';
