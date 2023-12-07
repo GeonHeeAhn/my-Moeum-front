@@ -224,16 +224,14 @@ const FaceRecogniton = () => {
     }
 
     async function loadModelsAndStart() {
+      await sendApi();
+      await imgApi();
       await loadModels(); // 모델 로딩
       await start(); // 모델 로딩 후 실행
 
       setLoaded(true);
     }
-    const fetchFriend = async () => {
-      await sendApi();
-      await imgApi();
-    };
-    fetchFriend();
+  
 
     loadModelsAndStart();
   }, []);
