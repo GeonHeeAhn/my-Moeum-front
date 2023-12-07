@@ -276,9 +276,7 @@ const FaceRecogniton = () => {
     return Promise.all(
       labels.map(async (label) => {
         const description = [];
-        const img = await faceapi.fetchImage(
-          `https://github.com/Moeum-ewha/Moeum-frontend/blob/main/public/known/${label}.jpg?raw=true`,
-        );
+        const img = await faceapi.fetchImage(`../public/known/${label}.jpg`);
         const detections = await faceapi
           .detectSingleFace(img)
           .withFaceLandmarks()
