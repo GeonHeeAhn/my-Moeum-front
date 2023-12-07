@@ -37,9 +37,9 @@ const FaceRecogniton = () => {
 
   const sendApi = async () => {
     // Send 버튼 더블클릭 방지
-    if (loading) return;
+    if (loaded) return;
 
-    setLoading(true);
+    setLoaded(true);
 
     try {
       // Send API request
@@ -103,7 +103,7 @@ const FaceRecogniton = () => {
       // 오류 처리
       console.error(error);
     } finally {
-      setLoading(false);
+      setLoaded(false);
     }
   };
 
