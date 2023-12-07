@@ -73,10 +73,7 @@ const FaceRecogniton = () => {
   };
 
   const imgApi = async () => {
-    console.log('api 들어옴');
     try {
-      // Assuming postlist is an array
-      console.log('try문 들어옴');
       const newFriendlist = await Promise.all(
         friendlist.map(async (friend) => {
           const response = await axios({
@@ -98,7 +95,7 @@ const FaceRecogniton = () => {
       );
 
       setfd(newFriendlist);
-      console.log('일단 map은 끝남');
+      console.log('imgapi 끝남');
     } catch (error) {
       // 오류 처리
       console.error(error);
@@ -353,10 +350,7 @@ const FaceRecogniton = () => {
   };
 
   async function loadLabeledImage() {
-    //get api해서 친구 목록 받아오고
-    //이름만 추출해서 라벨 설정
-    //fetchImage할 때 친구목록[친구목록.indexOf(${label})].faceImg 해서 사용
-
+    console.log("label load 시작");
     //const labels = fd.filter(item => item.friendName === targetFriendName);
     return Promise.all(
       fd.map(async (friend) => {
