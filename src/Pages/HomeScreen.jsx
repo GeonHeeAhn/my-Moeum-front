@@ -103,7 +103,7 @@ const HomeScreen = () => {
     try {
       const response = await axios({
         method: 'GET',
-        url: `/latest?userId=${1}`,
+        url: `/latest`,
         withCredentials: true,
       });
 
