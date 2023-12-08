@@ -190,7 +190,7 @@ export const ViewPost = () => {
     try {
       const response = await axios({
         method: 'DELETE',
-        url: `/post/${postId}?userId=1`,
+        url: `/post/${postId}`,
         withCredentials: true,
       });
 

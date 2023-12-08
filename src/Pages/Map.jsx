@@ -49,7 +49,7 @@ const Map = () => {
       try {
         const response = await axios({
           method: 'GET',
-          url: `/posts?userId=${1}`,
+          url: `/posts`,
           withCredentials: true,
         });
         console.log('sendApi : ' + response.status);

@@ -62,7 +62,7 @@ const Settings = () => {
       // Send API request
       const response = await axios({
         method: 'GET',
-        url: `/account?userId=${1}`,
+        url: `/account`,
         withCredentials: true,
       });
 

@@ -37,7 +37,7 @@ const FriendPostList = () => {
       // Send API request
       const response = await axios({
         method: 'GET',
-        url: `/friend/${id}?userId=1`,
+        url: `/friend/${id}`,
         withCredentials: true,
       });
       console.log(response.data);
