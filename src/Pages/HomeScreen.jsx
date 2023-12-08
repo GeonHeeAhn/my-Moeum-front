@@ -108,6 +108,7 @@ const HomeScreen = () => {
       });
 
       console.log(response.status);
+      console.log(response.data);
       setName(response.data.post.friends[0].friendName);
       console.log(response.data.post.friends[0].friendName);
     } catch (error) {

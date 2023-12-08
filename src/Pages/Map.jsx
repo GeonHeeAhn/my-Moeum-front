@@ -220,9 +220,9 @@ const Map = () => {
                   />
                 </Photo>
                 <Info>
-                  <Date>{post.takenAt}</Date>
+                  <Date>2023-11-28</Date>
                   <Place>{post.location}</Place>
-                  <Dday>{array[`${post.id % 5}`]}</Dday>
+                  <Dday>{array[`${post.id % 4}`]}</Dday>
                 </Info>
               </Moeum>
             ))
