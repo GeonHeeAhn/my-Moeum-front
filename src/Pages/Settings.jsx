@@ -60,25 +60,25 @@ const Settings = () => {
 
     try {
       // Send API request
-      const response = await axios({
+      const apiResponse = await axios({
         method: 'GET',
-        url: `/account?userId=11`,
+        url: `/account`,
         withCredentials: true,
       });
 
-      console.log(response);
+      console.log(apiResponse);
 
       // 2XX status code
-      console.log(response.status);
-      console.log(response.data);
+      console.log(apiResponse.status);
+      console.log(apiResponse.data);
 
-      setResponse(response.data); // 서버로부터 받은 데이터를 response에 업데이트합니다.
+      setResponse(apiResponse.data); // 서버로부터 받은 데이터를 response에 업데이트합니다.
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response) {
           // Non-2XX status code
-          console.error(error.response.status);
-          console.error(error.response.data);
+          console.error(error.apiResponse.status);
+          console.error(error.apiResponse.data);
         } else if (error.request) {
           // Request made, no response
           console.error(error.request);
