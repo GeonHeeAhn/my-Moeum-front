@@ -35,11 +35,10 @@ const Map = () => {
   const postRef = useRef();
 
   const array = [
+    '진영이랑 영훈이랑',
     '건희랑 진영이랑',
-    '윤선이랑 영우랑',
-    '건희랑 진영이랑 윤선이랑',
+    '건희랑 진영이랑',
     '윤선이랑 유진이랑',
-    '유진이랑 민주랑 윤선이랑',
   ];
   const { location, error: currentError } =
     useCurrentLocation(geolocationOptions);
@@ -221,7 +220,7 @@ const Map = () => {
                   />
                 </Photo>
                 <Info>
-                  <Date>2023-11-21</Date>
+                  <Date>{post.takenAt}</Date>
                   <Place>{post.location}</Place>
                   <Dday>{array[`${post.id % 5}`]}</Dday>
                 </Info>
